@@ -1,0 +1,447 @@
+{
+	"info": {
+		"_postman_id": "52eed29a-5151-4ea8-b2ce-c0a98d4dda77",
+		"name": "Spotify Preferences API - Django",
+		"description": "Complete collection to test the Spotify Preferences API developed with Django REST Framework",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38382007"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "List all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						},
+						"description": "Get list of all registered users"
+					},
+					"response": []
+				},
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"johndoe\",\n    \"email\": \"john@example.com\",\n    \"full_name\": \"John Doe\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						},
+						"description": "Create a new user"
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"1",
+								""
+							]
+						},
+						"description": "Get information of a specific user"
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"newemail@example.com\",\n    \"full_name\": \"John Updated Doe\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"1",
+								""
+							]
+						},
+						"description": "Update user information"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"1",
+								""
+							]
+						},
+						"description": "Delete a user"
+					},
+					"response": []
+				},
+				{
+					"name": "Get user preferences",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users/1/preferences/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"1",
+								"preferences",
+								""
+							]
+						},
+						"description": "Get all music preferences of a user"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for user management (Complete CRUD)"
+		},
+		{
+			"name": "Music Preferences",
+			"item": [
+				{
+					"name": "Create music preference",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 1,\n    \"track_id\": \"3z8h0TU7ReDPLIbEnYhWZb\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/music/preferences/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"music",
+								"preferences",
+								""
+							]
+						},
+						"description": "Create a music preference. You only need user_id and track_id, the rest is obtained automatically from Spotify."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete preference",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/music/preferences/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"music",
+								"preferences",
+								"1",
+								""
+							]
+						},
+						"description": "Delete a music preference by its ID"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for music preferences management"
+		},
+		{
+			"name": "Spotify Integration",
+			"item": [
+				{
+					"name": "Search tracks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/music/spotify/search/?query=bohemian rhapsody&type=track&limit=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"music",
+								"spotify",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "bohemian rhapsody",
+									"description": "Search term"
+								},
+								{
+									"key": "type",
+									"value": "track",
+									"description": "Type: track, artist, album"
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Number of results (1-50)"
+								}
+							]
+						},
+						"description": "Search for tracks on Spotify"
+					},
+					"response": []
+				},
+				{
+					"name": "Search artists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/music/spotify/search/?query=queen&type=artist&limit=5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"music",
+								"spotify",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "queen"
+								},
+								{
+									"key": "type",
+									"value": "artist"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						},
+						"description": "Search for artists on Spotify"
+					},
+					"response": []
+				},
+				{
+					"name": "Search albums",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/music/spotify/search/?query=a night at the opera&type=album&limit=5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"music",
+								"spotify",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "a night at the opera"
+								},
+								{
+									"key": "type",
+									"value": "album"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						},
+						"description": "Search for albums on Spotify"
+					},
+					"response": []
+				},
+				{
+					"name": "Get track information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/music/spotify/track/3z8h0TU7ReDPLIbEnYhWZb/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"music",
+								"spotify",
+								"track",
+								"3z8h0TU7ReDPLIbEnYhWZb",
+								""
+							]
+						},
+						"description": "Get detailed information of a track by its Spotify ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Get artist information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/music/spotify/artist/1dfeR4HaWDbWqFHLkxsg1d/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"music",
+								"spotify",
+								"artist",
+								"1dfeR4HaWDbWqFHLkxsg1d",
+								""
+							]
+						},
+						"description": "Get detailed information of an artist (Queen)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get artist top tracks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/music/spotify/artist/1dfeR4HaWDbWqFHLkxsg1d/top-tracks/?country=US",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"music",
+								"spotify",
+								"artist",
+								"1dfeR4HaWDbWqFHLkxsg1d",
+								"top-tracks",
+								""
+							],
+							"query": [
+								{
+									"key": "country",
+									"value": "US",
+									"description": "ISO country code (US, ES, MX, etc.)"
+								}
+							]
+						},
+						"description": "Get the most popular tracks of an artist"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for Spotify API integration"
+		},
+		{
+			"name": "Root - API Info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						""
+					]
+				},
+				"description": "Root endpoint that shows general API information"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "user_id",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "preference_id",
+			"value": "1",
+			"type": "string"
+		}
+	]
+}
