@@ -1,0 +1,25 @@
+# Archivos de entorno
+.env
+venv/
+env/
+ENV/
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Bases de datos
+*.db
+*.sqlite3
+
+# Logs
+*.log
